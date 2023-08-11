@@ -1,0 +1,17 @@
+{% extends "editor/base.html" %}
+
+{% block content %}
+    <h2>Questions</h2> ( <a href="{% url 'editor:new_question' %}">new question</a>  )
+    <br><br>
+    <ul>
+        {% for question in object_list %}
+            <li>
+             {{ question.question }}
+
+              <a href="{% url 'editor:view_question' question.id %}">[...]</a>
+              <a href="{% url 'editor:edit_question' question.id %}">[edit]</a>
+              <a href="{% url 'editor:delete_question' question.id %}">[X]</a>
+              {% if question.author %}- by {{ question.author.username }} {% endif %}
+        {% endfor %}
+    </ul>
+{% endblock %}
